@@ -2,13 +2,17 @@ package chess.pieces;
 
 import boardgame.Board;
 import boardgame.Position;
+import chess.ChessMatch;
 import chess.ChessPiece;
 import chess.Color;
 
 public class Pawn extends ChessPiece {
 
-	public Pawn(Board board, Color color) {
+	private ChessMatch chessMatch;
+
+	public Pawn(Board board, Color color, ChessMatch chessMatch) {
 		super(board, color);
+		this.chessMatch = chessMatch;
 
 	}
 
@@ -40,6 +44,22 @@ public class Pawn extends ChessPiece {
 			if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
 				mat[p.getRow()][p.getColumm()] = true;
 			}
+
+			// #specialmove en passant white
+			if (position.getRow() == 3) {
+				Position left = new Position(position.getRow(), position.getColumm() - 1);
+				if (getBoard().positionExists(left) && isThereOpponentPiece(left)
+						&& getBoard().piece(left) == chessMatch.getEnPassantVulnerable())
+					;{
+				mat[left.getRow() - 1][left.getColumm()] = true;}
+			}
+			Position rigth = new Position(position.getRow(), position.getColumm() + 1);
+			if (getBoard().positionExists(rigth) && isThereOpponentPiece(rigth)
+					&& getBoard().piece(rigth) == chessMatch.getEnPassantVulnerable())
+				;{
+			mat[rigth.getRow() - 1][rigth.getColumm()] = true;
+			}
+
 		}
 
 		else {
@@ -65,6 +85,20 @@ public class Pawn extends ChessPiece {
 			if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
 				mat[p.getRow()][p.getColumm()] = true;
 
+			}
+			// #specialmove en passant black
+			if (position.getRow() == 4) {
+				Position left = new Position(position.getRow(), position.getColumm() - 1);
+				if (getBoard().positionExists(left) && isThereOpponentPiece(left)
+						&& getBoard().piece(left) == chessMatch.getEnPassantVulnerable())
+					;{
+				mat[left.getRow() + 1][left.getColumm()] = true;}
+			}
+			Position rigth = new Position(position.getRow(), position.getColumm() + 1);
+			if (getBoard().positionExists(rigth) && isThereOpponentPiece(rigth)
+					&& getBoard().piece(rigth) == chessMatch.getEnPassantVulnerable())
+				;{
+			mat[rigth.getRow() + 1][rigth.getColumm()] = true;
 			}
 
 		}
