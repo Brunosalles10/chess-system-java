@@ -3,19 +3,19 @@ package chess;
 import boardgame.Position;
 
 public class ChessPosition {
-	private char column;
+	private char columm;
 	private int row;
 
-	public ChessPosition(char column, int row) {
-		if (column < 'a' || column > 'h' || row < 1 || row > 8) {
-			throw new ChessException("Error instantianting ChessPosition.");
+	public ChessPosition(char columm, int row) {
+		if (columm < 'a' || columm > 'h' || row < 1 || row > 8) {
+			throw new ChessException("Error instantiating ChessPosition. Valid values are from a1 to h8.");
 		}
-		this.column = column;
+		this.columm = columm;
 		this.row = row;
 	}
 
-	public char getColumn() {
-		return column;
+	public char getColumm() {
+		return columm;
 	}
 
 	public int getRow() {
@@ -23,7 +23,7 @@ public class ChessPosition {
 	}
 	
 	protected Position toPosition() {
-		return new Position(8 - row, column - 'a');
+		return new Position(8 - row, columm - 'a');
 	}
 	
 	protected static ChessPosition fromPosition(Position position) {
@@ -32,7 +32,7 @@ public class ChessPosition {
 	
 	@Override
 	public String toString() {
-		return "" + column + row;
+		return "" + columm + row;
 	}
 	
 

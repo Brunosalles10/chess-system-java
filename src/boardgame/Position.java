@@ -7,7 +7,7 @@ public class Position {
 	
 	
 	public Position(int row, int columm) {
-		super();
+	
 		this.row = row;
 		this.columm = columm;
 	}
@@ -36,9 +36,9 @@ public class Position {
 		this.columm = columm;
 	}
 	
-	public void setValues(int row, int column) {
+	public void setValues(int row, int columm) {
 		this.row = row;
-		this.columm = column;
+		this.columm = columm;
 	}
 	
 	

@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collector;
+
 import java.util.stream.Collectors;
 
 import chess.ChessMatch;
@@ -15,25 +15,26 @@ import chess.Color;
 public class UI {
 	// https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
 
-	public static final String ANSI_RESET = "\u001B[0m";
-	public static final String ANSI_BLACK = "\u001B[30m";
-	public static final String ANSI_RED = "\u001B[31m";
-	public static final String ANSI_GREEN = "\u001B[32m";
-	public static final String ANSI_YELLOW = "\u001B[33m";
-	public static final String ANSI_BLUE = "\u001B[34m";
-	public static final String ANSI_PURPLE = "\u001B[35m";
-	public static final String ANSI_CYAN = "\u001B[36m";
-	public static final String ANSI_WHITE = "\u001B[37m";
+		public static final String ANSI_RESET = "\u001B[0m";
+		public static final String ANSI_BLACK = "\u001B[30m";
+		public static final String ANSI_RED = "\u001B[31m";
+		public static final String ANSI_GREEN = "\u001B[32m";
+		public static final String ANSI_YELLOW = "\u001B[33m";
+		public static final String ANSI_BLUE = "\u001B[34m";
+		public static final String ANSI_PURPLE = "\u001B[35m";
+		public static final String ANSI_CYAN = "\u001B[36m";
+		public static final String ANSI_WHITE = "\u001B[37m";
 
-	public static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
-	public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
-	public static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
-	public static final String ANSI_YELLOW_BACKGROUND = "\u001B[43m";
-	public static final String ANSI_BLUE_BACKGROUND = "\u001B[44m";
-	public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
-	public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
-	public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
-	
+		public static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
+		public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
+		public static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
+		public static final String ANSI_YELLOW_BACKGROUND = "\u001B[43m";
+		public static final String ANSI_BLUE_BACKGROUND = "\u001B[44m";
+		public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
+		public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
+		public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
+		
+		// https://stackoverflow.com/questions/2979383/java-clear-the-console
 	public static void clearScreen() {
 		System.out.println("\0033[H\033[2J");
 		System.out.flush();
@@ -47,7 +48,7 @@ public class UI {
 			return new ChessPosition(column, row);
 		} 
 		catch (RuntimeException e) {
-			throw new InputMismatchException("error reading chess position.");
+			throw new InputMismatchException("error reading chess position. Valid values are from a1 to h8.");
 		}
 	}
 	
@@ -116,7 +117,7 @@ public class UI {
 	
 	private static void printCapturedPieces(List<ChessPiece> captured) {
 		List<ChessPiece> white = captured.stream().filter(x -> x.getColor() == Color.WHITE).collect(Collectors.toList());
-		List<ChessPiece> Black = captured.stream().filter(x -> x.getColor() == Color.BLACK).collect(Collectors.toList());
+		List<ChessPiece> black = captured.stream().filter(x -> x.getColor() == Color.BLACK).collect(Collectors.toList());
 		System.out.println("Capatured pieces");
 		System.out.print("white: ");
 		System.out.print(ANSI_WHITE);
@@ -125,7 +126,7 @@ public class UI {
 		
 		System.out.print("black: ");
 		System.out.print(ANSI_YELLOW);
-		System.out.println(Arrays.toString(Black.toArray()));
+		System.out.println(Arrays.toString(black.toArray()));
 		System.out.print(ANSI_RESET);
 		
 	}

@@ -23,11 +23,11 @@ public class Board {
 		return columns;
 	}
 
-	public Piece piece(int row, int column) {
-		if (!positionExists(row, column)) {
+	public Piece piece(int row, int columm) {
+		if (!positionExists(row, columm)) {
 			throw new BoardException("Position not on the board");
 		}
-		return pieces[row][column];
+		return pieces[row][columm];
 	}
 
 	public Piece piece(Position position) {
@@ -59,8 +59,8 @@ public class Board {
 	
 	
 
-	private boolean positionExists(int row, int column) {
-		return row >= 0 && row < rows && column >= 0 && column < columns;
+	private boolean positionExists(int row, int columm) {
+		return row >= 0 && row < rows && columm >= 0 && columm < columns;
 	}
 
 	public boolean positionExists(Position position) {
